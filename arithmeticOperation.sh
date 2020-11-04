@@ -7,3 +7,4 @@ read -p "Enter second number : " b
 read -p "Enter third number : " c
 
 add_mul=$(($a+$b*$c));
+mul_add=$(($a*$b+$c));
