@@ -51,4 +51,23 @@ done
 echo "Array in decending order :"
 echo ${Results[@]};
 
+#sorting the values in ascending order
+for ((i = 0; i<5; i++))
+do
+
+    for((j = 0; j<5-i-1; j++))
+    do
+
+        if [[ ${Results[j]} -gt ${Results[`expr $j + 1`]} ]]
+        then
+            # swap
+            temp=${Results[j]}
+            Results[$j]=${Results[$((j+1))]}
+            Results[$((j+1))]=$temp
+        fi
+    done
+done
+
+echo "Array in accending order :"
+echo ${Results[@]};
 
