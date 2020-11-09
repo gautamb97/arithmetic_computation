@@ -21,10 +21,34 @@ A_Operation[modulo_add]=$modulo_add;
 
 #reading values from dictionary to array
 count=0;
+#creating an array namely Results
+Results[((counter++))]=${A_Operation[add_mul]}
+Results[((counter++))]=${A_Operation[mul_add]}
+Results[((counter++))]=${A_Operation[add_divide]}
+Results[((counter++))]=${A_Operation[modulo_add]}
 
-Reading_From_dictionary[((counter++))]=${A_Operation[add_mul]}
-Reading_From_dictionary[((counter++))]=${A_Operation[mul_add]}
-Reading_From_dictionary[((counter++))]=${A_Operation[add_divide]}
-Reading_From_dictionary[((counter++))]=${A_Operation[modulo_add]}
+echo "Array Values in Original Form";
+echo ${Results[@]};
 
-echo ${Reading_From_dictionary[@]};
+#sorting the values in decending order
+
+for ((i = 0; i<5; i++))
+do
+
+    for((j = 0; j<5-i-1; j++))
+    do
+
+        if [[ ${Results[j]} -lt ${Results[`expr $j + 1`]} ]]
+        then
+            # swap
+            temp=${Results[j]}
+            Results[$j]=${Results[$((j+1))]}
+            Results[$((j+1))]=$temp
+        fi
+    done
+done
+
+echo "Array in decending order :"
+echo ${Results[@]};
+
+
